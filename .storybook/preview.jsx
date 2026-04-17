@@ -2,9 +2,6 @@ import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 
 import { defaultTheme } from '../src/styles/themes';
-import { TimelineProvider } from '../src/components/media/useTimeline';
-import { CartProvider } from '../src/components/cart/CartContext';
-import { SharedTransitionProvider } from '../src/components/motion/SharedTransitionContext';
 
 // Google Fonts 로드 (Material Symbols + 기본 폰트)
 const googleFonts = [
@@ -64,15 +61,12 @@ const preview = {
   },
   decorators: [
     (Story) => (
-      <CartProvider>
-        <TimelineProvider initialTimeline={0}>
-          <SharedTransitionProvider>
-            <div style={{ width: '100%', paddingTop: '40px' }}>
-              <Story />
-            </div>
-          </SharedTransitionProvider>
-        </TimelineProvider>
-      </CartProvider>
+      <ThemeProvider theme={defaultTheme}>
+        <CssBaseline />
+        <div style={{ width: '100%', paddingTop: '40px' }}>
+          <Story />
+        </div>
+      </ThemeProvider>
     ),
   ],
 };
